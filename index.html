@@ -1,0 +1,31 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    </head>
+    
+    <body>
+        <h1>Edocuments - A list of data</h1>
+        
+    <form id="login">
+        <label for="fname">Username :</label><br>
+        <input type="text" id="fname" name="fname" value="Username"><br>
+        <label for="lname">Password :</label><br>
+        <input type="password" id="lname" name="lname" value=""><br><br>
+        <button onclick="getUsername()">Submit</button>
+    </form>
+        
+        <!-- Table Data -->
+        <div class="container">
+        <h1 class="text-center">Tasks</h1>
+            <table class = "table table-stripped">
+            <tbody id="data">
+            
+            </tbody>
+        </table>
+        </div>
+        
+        <script src="main.js"></script>
+    </body>
+</html>
