@@ -1,6 +1,6 @@
 //API Request Test
-
-
+var tasks;
+var portfolio;
 //Retrieving Username and Password information from the web page
 function getUsername(){
     let form = document.getElementById("login");
@@ -58,7 +58,8 @@ async function testToken(password){
     }
 }
 
-async function getUserID(password){
+//Function to retrieve portfolio, returns data from Portfolio
+async function getUserPortfolio(password){
     try
         {
     let formatedString = `Digest username="xikxafatwae" realm="_root_" password="${password}"`
@@ -69,7 +70,24 @@ async function getUserID(password){
          'Authorization' : formatedString
      }});
     let data = await response.json();  
-    console.log(data)
+    
+    portfolio = await data.Result.sites;
+    let temp = "";
+    
+    //For Body
+        //For loop to grab data and display it in a Bootstrap table
+        portfolio.forEach((u) =>{
+            temp += `<tr>`;
+            temp += "<td>"+u.id+"</td>";
+            temp += `<td>`+u.address+`</td>`;
+            temp += "<td>"+u.name+"</td>";
+            temp += "<td>"+u.siteId+"</td>";
+            temp += "<td>"+u.isClosed+"</td>";
+            temp += `</tr>`;
+        })
+            
+        document.getElementById("portfolioBody").innerHTML = temp;
+        console.log(portfolio)
         }
     catch (err)
         {
@@ -96,6 +114,7 @@ async function getReportProjects(password,projectid)
         }
 }
 
+
 async function getTasksByUser(password){
     try {
         let formatedString = `Digest username="xikxafatwae" realm="_root_" password="${password}"`
@@ -106,21 +125,29 @@ async function getTasksByUser(password){
              'Authorization' : formatedString
          }});
         let data = await response.json();  
-        let tasks = await data.Result.tasks;
+        tasks = await data.Result.tasks;
         
+        let tempHead = "";
         let temp = "";
         
+        //For Body
+        //For loop to grab data and display it in a Bootstrap table
         tasks.forEach((u) =>{
-            temp += "<tr>";
-            temp += "<td>"+u.documentId+"</td>"
+            temp += `<tr>`;
+            temp += `<td>`+u.documentId+`</td>`
             temp += "<td>"+u.dueDate+"</td>"
             temp += "<td>"+u.Id+"</td>"
             temp += "<td>"+u.siteId+"</td>"
             temp += "<td>"+u.isClosed+"</td>"
+            temp += `</tr>`
         })
         
-        document.getElementById("data").innerHTML = temp;
+        //Inserts data into table
+//        document.getElementById("tasksHead").innerHTML = tempHead;
+        document.getElementById("tasksBody").innerHTML = temp;
+        console.log(tasks)
         
+
         }
     catch (err)
         {
@@ -130,6 +157,51 @@ async function getTasksByUser(password){
 }
 
 
+//Based off https://www.w3schools.com/howto/howto_js_filter_table.asp
+function tableSearch(){
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+    
+}
+
+//Shows and hides tables for searching
+function toggleTables(variable){
+    let x = document.getElementById("myTable");
+    let y = document.getElementById("myTable2");
+
+    
+    switch(variable){
+        case 'tasks':
+            console.log("Tasks are displayed");
+            y.style.display = "none";
+            x.style.display = "block";
+            break;
+        case 'portfolio':
+            console.log("Portfolio is displayed")
+            x.style.display = "none";
+            y.style.display = "block"
+
+            break;
+    }
+    
+}
+
 async function main(){
     
     //Generates a user token that can be used
@@ -137,7 +209,7 @@ async function main(){
     
     let test = await getTasksByUser(userToken);
     
-//    let getUserIDJSON = await getUserID(userToken);
+    let getUserIDJSON = await getUserPortfolio(userToken);
 //    let retrieveProjectJSON = await getReportProjects(userToken, "565c19a3-aab1-4e02-a640-ac8331708831");
     
 }
