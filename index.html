@@ -25,19 +25,21 @@
 
         <!-- Table Data -->
         <div class="container">
+        <div class="container" id="tasksTable"> 
         <h1 class="text-center">Tasks</h1>
             
-            <input type="text" id="myInput" onkeyup="tableSearch()" placeholder="id">
+            
             
             <table class = "table table-stripped"
                    id ="myTable" data-filter-control="true" data-show-search-clear-button="true"
                    >
             <thead id = "tasksHead">
                 <tr>
-                <th data-field="documentId" data-filter-control="input">ID</th>
-                <th data-field="name">Time</th>
-                <th data-field="time">Something</th>
-
+                    <th data-field="documentId">Document ID<input type="text" id="myInput" onkeyup="tableSearch()" placeholder="ID"></th>
+                    <th data-field="name">Subject<input type="text" id="myInput" onkeyup="tableSearch()" placeholder="Subject"></th>
+                    <th data-field="time">Creation Date <input type="text" id="myInput" onkeyup="tableSearch()" placeholder="YYYY-MM-DD"></th>
+                    <th data-field="time">Due Date <input type="text" id="myInput" onkeyup="tableSearch()" placeholder="YYYY-MM-DD"></th>
+                    <th data-field="time">Task Body<input type="text" id="myInput" onkeyup="tableSearch()" placeholder="YYYY-MM-DD"></th>
                 </tr>
             
             </thead>
@@ -45,14 +47,14 @@
                 <!--This is filled in main.js-->
                 </tbody>
         </table>
+            </div>
             
-        <h1> Portfolio</h1>
-            <table class = "table table-stripped"
-                   id ="myTable2" data-filter-control="true" data-show-search-clear-button="true"
-                   >
+        <div class="container" id="portfolioTable"> 
+        <h1 class="text-center">Portfolio</h1>
+            <table class = "table table-stripped" id ="myTable2" data-filter-control="true" data-show-search-clear-button="true">
             <thead id = "tasksHead">
                 <tr>
-                <th data-field="name" data-filter-control="input">ID</th>
+                <th data-field="name">ID</th>
                 <th data-field="name">address</th>
                 <th data-field="time">name</th>
                 <th data-field="time">siteId</th>
@@ -64,6 +66,7 @@
                 <!--This is filled in main.js-->
                 </tbody>
         </table>
+        </div>   
         </div>
         
         

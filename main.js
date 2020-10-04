@@ -78,16 +78,18 @@ async function getUserPortfolio(password){
         //For loop to grab data and display it in a Bootstrap table
         portfolio.forEach((u) =>{
             temp += `<tr>`;
-            temp += "<td>"+u.id+"</td>";
-            temp += `<td>`+u.address+`</td>`;
             temp += "<td>"+u.name+"</td>";
-            temp += "<td>"+u.siteId+"</td>";
-            temp += "<td>"+u.isClosed+"</td>";
+            temp += `<td>`+u.id+`</td>`;
+            temp += "<td>"+u.address+"</td>";
+            temp += "<td>"+u.postcode+"</td>";
+            temp += "<td>"+u.projects.length+"</td>";
             temp += `</tr>`;
         })
             
         document.getElementById("portfolioBody").innerHTML = temp;
-        console.log(portfolio)
+            
+        console.log(portfolio);
+            
         }
     catch (err)
         {
@@ -135,16 +137,17 @@ async function getTasksByUser(password){
         tasks.forEach((u) =>{
             temp += `<tr>`;
             temp += `<td>`+u.documentId+`</td>`
+            temp += "<td>"+u.subject+"</td>"
+            temp += "<td>"+u.createdDate+"</td>"
             temp += "<td>"+u.dueDate+"</td>"
-            temp += "<td>"+u.Id+"</td>"
-            temp += "<td>"+u.siteId+"</td>"
-            temp += "<td>"+u.isClosed+"</td>"
+            temp += "<td>"+u.taskMessages[0].body+"</td>"
             temp += `</tr>`
         })
         
         //Inserts data into table
 //        document.getElementById("tasksHead").innerHTML = tempHead;
         document.getElementById("tasksBody").innerHTML = temp;
+        
         console.log(tasks)
         
 
@@ -158,7 +161,7 @@ async function getTasksByUser(password){
 
 
 //Based off https://www.w3schools.com/howto/howto_js_filter_table.asp
-function tableSearch(){
+function tableSearch(inputID,tableID,tableRow){
     let input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
@@ -182,13 +185,13 @@ function tableSearch(){
 
 //Shows and hides tables for searching
 function toggleTables(variable){
-    let x = document.getElementById("myTable");
-    let y = document.getElementById("myTable2");
+    let x = document.getElementById("tasksTable");
+    let y = document.getElementById("portfolioTable");
 
     
     switch(variable){
         case 'tasks':
-            console.log("Tasks are displayed");
+            console.log("Tasks is displayed");
             y.style.display = "none";
             x.style.display = "block";
             break;
