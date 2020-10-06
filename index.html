@@ -9,19 +9,11 @@
     <!-- OWN CSS -->
     <link rel="stylesheet" href="style.css">
     <body>
-        <h1 class>Edocuments - API Data Dashboard</h1>
-        
-    <form id="login">
-        <label for="fname">Username :</label><br>
-        <input type="text" id="fname" name="fname" value="Username"><br>
-        <label for="lname">Password :</label><br>
-        <input type="password" id="lname" name="lname" value=""><br><br>
-        <button onclick="getUsername()">Submit</button>
-    </form>
-        
-
+        <h1 class="text-center">Edocuments - API Data Dashboard</h1>
+        <center>
         <button onclick="toggleTables('tasks')">Tasks</button>
         <button onclick="toggleTables('portfolio')">Portfolio</button>
+            </center>
 
         <!-- Table Data -->
         <div class="container">
@@ -35,11 +27,11 @@
                    >
             <thead id = "tasksHead">
                 <tr>
-                    <th data-field="documentId">Document ID<input type="text" id="myInput" onkeyup="tableSearch()" placeholder="ID"></th>
-                    <th data-field="name">Subject<input type="text" id="myInput" onkeyup="tableSearch()" placeholder="Subject"></th>
-                    <th data-field="time">Creation Date <input type="text" id="myInput" onkeyup="tableSearch()" placeholder="YYYY-MM-DD"></th>
-                    <th data-field="time">Due Date <input type="text" id="myInput" onkeyup="tableSearch()" placeholder="YYYY-MM-DD"></th>
-                    <th data-field="time">Task Body<input type="text" id="myInput" onkeyup="tableSearch()" placeholder="YYYY-MM-DD"></th>
+                    <th data-field="name">Document ID<input type="text" class="myInput" id="documentIDInput" onkeyup='tableSearch("documentIDInput",0,"myTable")' placeholder="ID"></th>
+                    <th data-field="name">Subject<input type="text" class="myInput" id="subjectInput" onkeyup='tableSearch("subjectInput",1,"myTable")' placeholder="Subject"></th>
+                    <th data-field="time">Creation Date <input type="text" class="myInput" id="creationInput" onkeyup='tableSearch("creationInput",2,"myTable")' placeholder="YYYY-MM-DD"></th>
+                    <th data-field="time">Due Date <input type="text" class="myInput" id="dueDateInput" onkeyup='tableSearch("dueDataInput",3,"myTable")' placeholder="YYYY-MM-DD"></th>
+                    <th data-field="time">Task Body<input type="text" class="myInput" id="taskInput" onkeyup='tableSearch("taskInput",4,"myTable")' placeholder="Text"></th>
                 </tr>
             
             </thead>
@@ -54,11 +46,11 @@
             <table class = "table table-stripped" id ="myTable2" data-filter-control="true" data-show-search-clear-button="true">
             <thead id = "tasksHead">
                 <tr>
-                <th data-field="name">ID</th>
-                <th data-field="name">address</th>
-                <th data-field="time">name</th>
-                <th data-field="time">siteId</th>
-                <th data-field="time">isClosed</th>
+                <th data-field="name">Name <input type="text" class="myInput" id="nameInput" onkeyup='tableSearch("nameInput",0,"myTable2")' placeholder="name"> </th>
+                <th data-field="name">ID <input type="text" class="myInput" id="IDInput" onkeyup='tableSearch("IDInput",1,"myTable2")' placeholder="name"></th>
+                <th data-field="time">Address <input type="text" class="myInput" id="addressInput" onkeyup='tableSearch("addressInput",2,"myTable2")' placeholder="name"></th>
+                <th data-field="time">PostCode <input type="text" class="myInput" id="postcodeInput" onkeyup='tableSearch("postcodeInput",3,"myTable2")' placeholder="name"></th>
+                <th data-field="time">isClosed <input type="text" class="myInput" id="closedInput" onkeyup='tableSearch("closedInput",4,"myTable2")' placeholder="name"></th>
                 </tr>
             
             </thead>

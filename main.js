@@ -2,16 +2,6 @@
 var tasks;
 var portfolio;
 //Retrieving Username and Password information from the web page
-function getUsername(){
-    let form = document.getElementById("login");
-    
-    let username = form.elements[0].value;
-    let password = form.elements[1].value;
-    
-    console.log(username)
-    console.log(password)
-}
-
 
 //To retrieve the user token, returns user token
 async function getUserToken(username, password)
@@ -161,16 +151,16 @@ async function getTasksByUser(password){
 
 
 //Based off https://www.w3schools.com/howto/howto_js_filter_table.asp
-function tableSearch(inputID,tableID,tableRow){
+function tableSearch(inputID,tableIndex,tableType){
     let input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById(inputID);
     filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
+    table = document.getElementById(tableType);
     tr = table.getElementsByTagName("tr");
     
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[tableIndex];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -187,7 +177,6 @@ function tableSearch(inputID,tableID,tableRow){
 function toggleTables(variable){
     let x = document.getElementById("tasksTable");
     let y = document.getElementById("portfolioTable");
-
     
     switch(variable){
         case 'tasks':
@@ -198,8 +187,7 @@ function toggleTables(variable){
         case 'portfolio':
             console.log("Portfolio is displayed")
             x.style.display = "none";
-            y.style.display = "block"
-
+            y.style.display = "block";
             break;
     }
     
@@ -207,6 +195,8 @@ function toggleTables(variable){
 
 async function main(){
     
+    toggleTables('tasks');
+
     //Generates a user token that can be used
     let userToken = await getUserToken("testuser1@edocuments.co.uk","20DemoPass20");
     
