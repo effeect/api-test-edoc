@@ -11,9 +11,16 @@
     <body>
         <h1 class="text-center">Edocuments - API Data Dashboard</h1>
         <center>
+        <input type="text" id="username" placeholder="Username" name="username">
+        <input type="password" id="password" placeholder="Password" name="psw">
+        <button type="submit" onclick="main().catch(console.log);">Login</button>
+            </center>
+                    <hr>
+
+        <center>
         <button onclick="toggleTables('tasks')">Tasks</button>
         <button onclick="toggleTables('portfolio')">Portfolio</button>
-            </center>
+        </center>
 
         <!-- Table Data -->
         <div class="container">

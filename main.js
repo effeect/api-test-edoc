@@ -3,6 +3,7 @@ var tasks;
 var portfolio;
 //Retrieving Username and Password information from the web page
 
+toggleTables('tasks');
 //To retrieve the user token, returns user token
 async function getUserToken(username, password)
 {
@@ -14,7 +15,7 @@ async function getUserToken(username, password)
              'Content-Type' : 'application/json',
              'Authorization' : `Digest username="xikxafatwae" realm="_root_" password=""` 
          },
-         body : JSON.stringify({ "username" : "testuser1@edocuments.co.uk", "password" : "20DemoPass20"})
+         body : JSON.stringify({ "username" : username, "password" : password})
          })
         let data = await response.json();
         let tokenValue = await data.Result.auth.token;
@@ -22,6 +23,7 @@ async function getUserToken(username, password)
     }
     catch (err)
     {
+        alert(err)
         console.log(err)
     }
 }
@@ -44,6 +46,7 @@ async function testToken(password){
     }
     catch (err)
     {
+        alert("Username/Password Invalid")
         console.log(err)
     }
 }
@@ -193,24 +196,36 @@ function toggleTables(variable){
     
 }
 
-async function main(){
-    
-    toggleTables('tasks');
+//Grabs user login value
+async function login(){
+    try {
+            let usernameVal = document.getElementById("username").value;
+            let passwordVal = document.getElementById("password").value;
+            
+            return {username : usernameVal, password: passwordVal}
+    } 
+    catch(err) {
+            console.log(err);
+    } 
 
-    //Generates a user token that can be used
-    let userToken = await getUserToken("testuser1@edocuments.co.uk","20DemoPass20");
-    
-    let test = await getTasksByUser(userToken);
-    
-    let getUserIDJSON = await getUserPortfolio(userToken);
-//    let retrieveProjectJSON = await getReportProjects(userToken, "565c19a3-aab1-4e02-a640-ac8331708831");
-    
+     
 }
 
-//Catches errors for the main async function
-main().catch(console.log);
+async function main(){
+    
+    //Generates a user token that can be used
+    let loginDetails = await login()
+    let userToken = await getUserToken(loginDetails.username, loginDetails.password);
+    let testToken = await testToken(userToken);
+    let tasksByUser = await getTasksByUser(userToken);
+    let portfolioByUser = await getUserPortfolio(userToken);
+
+}
+
+//main().catch(console.log);
 
 
+//"testuser1@edocuments.co.uk","20DemoPass20"
 
 
 
