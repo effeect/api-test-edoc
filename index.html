@@ -1,81 +1,75 @@
 <!doctype html>
 <html lang="en">
-    <head>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
-    </head>
-    
-    <!-- OWN CSS -->
-    <link rel="stylesheet" href="style.css">
-    <body>
-        <h1 class="text-center">Edocuments - API Data Dashboard</h1>
-        <center>
+</head>
+
+<!-- OWN CSS -->
+<link rel="stylesheet" href="style.css">
+
+<body>
+    <h1 class="text-center">Edocuments - API Data Dashboard</h1>
+    <center>
         <input type="text" id="username" placeholder="Username" name="username">
         <input type="password" id="password" placeholder="Password" name="psw">
         <button type="submit" onclick="main().catch(console.log);">Login</button>
-            </center>
-                    <hr>
+    </center>
+    <hr>
 
-        <center>
+    <center>
         <button onclick="toggleTables('tasks')">Tasks</button>
         <button onclick="toggleTables('portfolio')">Portfolio</button>
-        </center>
+    </center>
 
-        <!-- Table Data -->
-        <div class="container">
-        <div class="container" id="tasksTable"> 
-        <h1 class="text-center">Tasks</h1>
-            
-            
-            
-            <table class = "table table-stripped"
-                   id ="myTable" data-filter-control="true" data-show-search-clear-button="true"
-                   >
-            <thead id = "tasksHead">
-                <tr>
-                    <th data-field="name">Document ID<input type="text" class="myInput" id="documentIDInput" onkeyup='tableSearch("documentIDInput",0,"myTable")' placeholder="ID"></th>
-                    <th data-field="name">Subject<input type="text" class="myInput" id="subjectInput" onkeyup='tableSearch("subjectInput",1,"myTable")' placeholder="Subject"></th>
-                    <th data-field="time">Creation Date <input type="text" class="myInput" id="creationInput" onkeyup='tableSearch("creationInput",2,"myTable")' placeholder="YYYY-MM-DD"></th>
-                    <th data-field="time">Due Date <input type="text" class="myInput" id="dueDateInput" onkeyup='tableSearch("dueDataInput",3,"myTable")' placeholder="YYYY-MM-DD"></th>
-                    <th data-field="time">Task Body<input type="text" class="myInput" id="taskInput" onkeyup='tableSearch("taskInput",4,"myTable")' placeholder="Text"></th>
-                </tr>
-            
-            </thead>
+    <!-- Table Data -->
+    <div class="container">
+        <div class="container" id="tasksTable">
+            <h1 class="text-center">Tasks</h1>
+
+
+
+            <table class="table table-stripped" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+                <thead id="tasksHead">
+                    <tr>
+                        <th data-field="name">Document ID<input type="text" class="myInput" id="documentIDInput" onkeyup='tableSearch("documentIDInput",0,"myTable")' placeholder="ID"></th>
+                        <th data-field="name">Subject<input type="text" class="myInput" id="subjectInput" onkeyup='tableSearch("subjectInput",1,"myTable")' placeholder="Subject"></th>
+                        <th data-field="time">Creation Date <input type="text" class="myInput" id="creationInput" onkeyup='tableSearch("creationInput",2,"myTable")' placeholder="YYYY-MM-DD"></th>
+                        <th data-field="time">Due Date <input type="text" class="myInput" id="dueDateInput" onkeyup='tableSearch("dueDataInput",3,"myTable")' placeholder="YYYY-MM-DD"></th>
+                        <th data-field="time">Task Body<input type="text" class="myInput" id="taskInput" onkeyup='tableSearch("taskInput",4,"myTable")' placeholder="Text"></th>
+                    </tr>
+
+                </thead>
                 <tbody id="tasksBody">
-                <!--This is filled in main.js-->
+                    <!--This is filled in main.js-->
                 </tbody>
-        </table>
-            </div>
-            
-        <div class="container" id="portfolioTable"> 
-        <h1 class="text-center">Portfolio</h1>
-            <table class = "table table-stripped" id ="myTable2" data-filter-control="true" data-show-search-clear-button="true">
-            <thead id = "tasksHead">
-                <tr>
-                <th data-field="name">Name <input type="text" class="myInput" id="nameInput" onkeyup='tableSearch("nameInput",0,"myTable2")' placeholder="name"> </th>
-                <th data-field="name">ID <input type="text" class="myInput" id="IDInput" onkeyup='tableSearch("IDInput",1,"myTable2")' placeholder="name"></th>
-                <th data-field="time">Address <input type="text" class="myInput" id="addressInput" onkeyup='tableSearch("addressInput",2,"myTable2")' placeholder="name"></th>
-                <th data-field="time">PostCode <input type="text" class="myInput" id="postcodeInput" onkeyup='tableSearch("postcodeInput",3,"myTable2")' placeholder="name"></th>
-                <th data-field="time">isClosed <input type="text" class="myInput" id="closedInput" onkeyup='tableSearch("closedInput",4,"myTable2")' placeholder="name"></th>
-                </tr>
-            
-            </thead>
-                <tbody id="portfolioBody">
-                <!--This is filled in main.js-->
-                </tbody>
-        </table>
-        </div>   
+            </table>
         </div>
-        
-        
-        
-        
-        
-        <script src="tableFilter.js"></script>
-        <script src="main.js"></script>
-    </body>
 
-    <footer></footer>
+        <div class="container" id="portfolioTable">
+            <h1 class="text-center">Portfolio</h1>
+            <table class="table table-stripped" id="myTable2" data-filter-control="true" data-show-search-clear-button="true">
+                <thead id="tasksHead">
+                    <tr>
+                        <th data-field="name">Name <input type="text" class="myInput" id="nameInput" onkeyup='tableSearch("nameInput",0,"myTable2")' placeholder="Name"> </th>
+                        <th data-field="name">ID <input type="text" class="myInput" id="IDInput" onkeyup='tableSearch("IDInput",1,"myTable2")' placeholder="ID"></th>
+                        <th data-field="time">Address <input type="text" class="myInput" id="addressInput" onkeyup='tableSearch("addressInput",2,"myTable2")' placeholder="Address"></th>
+                        <th data-field="time">PostCode <input type="text" class="myInput" id="postcodeInput" onkeyup='tableSearch("postcodeInput",3,"myTable2")' placeholder="Postcode"></th>
+                        <th data-field="time">isClosed <input type="text" class="myInput" id="closedInput" onkeyup='tableSearch("closedInput",4,"myTable2")' placeholder="isClosed"></th>
+                    </tr>
+
+                </thead>
+                <tbody id="portfolioBody">
+                    <!--This is filled in main.js-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+<footer></footer>
 
 </html>
