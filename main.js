@@ -1,6 +1,4 @@
 //API Request Test
-//Login Details are "testuser1@edocuments.co.uk","20DemoPass20"
-
 var tasks;
 var portfolio;
 toggleTables('tasks');
